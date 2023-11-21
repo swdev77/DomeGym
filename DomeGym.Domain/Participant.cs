@@ -1,8 +1,10 @@
 namespace DomeGym.Domain;
 
-public class Participant
+public class Participant(
+    Guid userId,
+    Guid? id = null)
 {
-    private readonly Guid _id;
-    private readonly Guid _userId;
-    private readonly List<Guid> _sessionIds;
+    public Guid Id { get; } = id ?? Guid.NewGuid();
+    private readonly Guid _userId = userId;
+    private readonly List<Guid> _sessionIds = [];
 }

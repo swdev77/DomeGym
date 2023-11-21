@@ -40,7 +40,6 @@ public class SessionTests
         
         var participant = ParticipantFactory.CreateParticipant();
 
-
         var cancellationDateTime = Constants.Session.Date.ToDateTime(TimeOnly.MinValue);
 
         // Act

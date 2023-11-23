@@ -1,10 +1,10 @@
+using DomeGym.Domain.Common;
 using ErrorOr;
 
 namespace DomeGym.Domain;
 
-public class Gym(Guid? id = null, int maxRooms = 1)
+public class Gym(Guid? id = null, int maxRooms = 1) : Entity(id ?? Guid.NewGuid())
 {
-    public Guid Id { get; } = id ?? Guid.NewGuid();
     private readonly List<Guid> _roomIds = [];
     private readonly int _maxRooms = maxRooms;
 

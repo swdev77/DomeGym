@@ -1,10 +1,10 @@
+using DomeGym.Domain.Common;
 using ErrorOr;
 
 namespace DomeGym.Domain;
 
-public class Room(Guid id, int maxDailySessions, Schedule? schedule = null)
+public class Room(Guid id, int maxDailySessions, Schedule? schedule = null) : Entity(id)
 {
-    public Guid Id { get; } = id;
     private readonly List<Guid> _sessionIds = [];
     private readonly int _maxDailySessions = maxDailySessions;
     private readonly Schedule _schedule = schedule ?? Schedule.Empty();

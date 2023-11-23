@@ -1,12 +1,12 @@
+using DomeGym.Domain.Common;
 using ErrorOr;
 
 namespace DomeGym.Domain;
 
 public class Participant(
     Guid userId,
-    Guid? id = null)
+    Guid? id = null) : Entity(id ?? Guid.NewGuid())
 {
-    public Guid Id { get; } = id ?? Guid.NewGuid();
     private readonly Guid _userId = userId;
     private readonly List<Guid> _sessionIds = [];
     private readonly Schedule _schedule = Schedule.Empty();

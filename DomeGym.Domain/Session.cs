@@ -1,3 +1,4 @@
+using DomeGym.Domain.Common;
 using ErrorOr;
 
 namespace DomeGym.Domain;
@@ -7,9 +8,8 @@ public class Session(
     TimeRange time,
     int maxParticipants,
     Guid trainerId,
-    Guid? id = null)
+    Guid? id = null) : Entity(id ?? Guid.NewGuid())
 {
-    public Guid Id { get; } = id ?? Guid.NewGuid();
     public DateOnly Date { get; } = date;
     public TimeRange Time { get; } = time;
     private readonly Guid _trainerId = trainerId;

@@ -1,10 +1,11 @@
+using DomeGym.Domain.Common;
 using ErrorOr;
 
 namespace DomeGym.Domain;
 
-public class Subscription(SubscriptionType subscriptionType)
+public class Subscription(SubscriptionType subscriptionType, Guid? id = null) 
+    : Entity(id ?? Guid.NewGuid())
 {
-    private readonly Guid _id;
     private readonly List<Guid> gymIds = [];
 
     private readonly SubscriptionType _subscriptionType = subscriptionType;

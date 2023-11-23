@@ -1,8 +1,9 @@
+using DomeGym.Domain.Common;
 using ErrorOr;
 
 namespace DomeGym.Domain;
 
-public class Trainer(Schedule? schedule = null, Guid? id = null)
+public class Trainer(Schedule? schedule = null, Guid? id = null) : Entity(id ?? Guid.NewGuid())
 {
     private readonly Guid _id = id ?? Guid.NewGuid();
     private readonly List<Guid> _sessionIds = [];
@@ -15,9 +16,9 @@ public class Trainer(Schedule? schedule = null, Guid? id = null)
 
         var bookTimeSlotResult = _schedule.BookTimeSlot(session.Date, session.Time);
 
-        if (bookTimeSlotResult.IsError  && bookTimeSlotResult.FirstError.Type == ErrorType.Conflict)
+        if (bookTimeSlotResult.IsError && bookTimeSlotResult.FirstError.Type == ErrorType.Conflict)
             return TrainerErrors.CannotHaveTwoOrMoreOverlappingSessions;
-        
+
         _sessionIds.Add(session.Id);
         return Result.Success;
     }

@@ -1,9 +1,10 @@
 using DomeGym.Domain.Common;
+using DomeGym.Domain.Gyms;
 using ErrorOr;
 
-namespace DomeGym.Domain;
+namespace DomeGym.Domain.Subscriptions;
 
-public class Subscription(SubscriptionType subscriptionType, Guid? id = null) 
+public class Subscription(SubscriptionType subscriptionType, Guid? id = null)
     : Entity(id ?? Guid.NewGuid())
 {
     private readonly List<Guid> gymIds = [];
@@ -12,12 +13,12 @@ public class Subscription(SubscriptionType subscriptionType, Guid? id = null)
 
     public ErrorOr<Success> AddGym(Gym gym)
     {
-        if(gymIds.Contains(gym.Id))
+        if (gymIds.Contains(gym.Id))
         {
             return Error.Conflict("Gym already exists in subscription");
         }
 
-        if(gymIds.Count >= GetMaxGyms())
+        if (gymIds.Count >= GetMaxGyms())
         {
             return SubscriptionErrors.CannotHaveMoreGymsThanSubscriptionAllows;
         }

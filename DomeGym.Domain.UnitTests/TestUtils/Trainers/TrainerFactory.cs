@@ -1,3 +1,5 @@
+using DomeGym.Domain.Trainers;
+
 namespace DomeGym.Domain.UnitTests.TestUtils.Trainers;
 
 public class TrainerFactory

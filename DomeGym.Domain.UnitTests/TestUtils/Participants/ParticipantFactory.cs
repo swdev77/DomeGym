@@ -1,7 +1,7 @@
+using DomeGym.Domain.Participants;
+using DomeGym.Domain.UnitTests.TestConstants;
+
 namespace DomeGym.Domain.UnitTests.TestUtils.Participants;
-
-using TestConstants;
-
 public static class ParticipantFactory
 {
     public static Participant CreateParticipant(

@@ -1,7 +1,9 @@
 using DomeGym.Domain.Common;
+using DomeGym.Domain.Common.Entities;
+using DomeGym.Domain.Sessions;
 using ErrorOr;
 
-namespace DomeGym.Domain;
+namespace DomeGym.Domain.Trainers;
 
 public class Trainer(Schedule? schedule = null, Guid? id = null) : Entity(id ?? Guid.NewGuid())
 {

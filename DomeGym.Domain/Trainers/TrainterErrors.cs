@@ -1,8 +1,8 @@
 using ErrorOr;
 
-namespace DomeGym.Domain;
+namespace DomeGym.Domain.Trainers;
 
-public static class TrainerErrors 
+public static class TrainerErrors
 {
     public readonly static Error CannotHaveTwoOrMoreOverlappingSessions = Error.Conflict(
         code: "CannotHaveTwoOrMoreOverlappingSessions",

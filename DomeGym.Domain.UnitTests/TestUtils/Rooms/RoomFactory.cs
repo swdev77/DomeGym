@@ -1,3 +1,5 @@
+using DomeGym.Domain.Rooms;
+
 namespace DomeGym.Domain.UnitTests.TestUtils.Rooms;
 
 public class RoomFactory

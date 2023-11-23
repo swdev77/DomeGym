@@ -1,14 +1,16 @@
 using DomeGym.Domain.Common;
+using DomeGym.Domain.Common.Interfaces;
+using DomeGym.Domain.Participants;
 using ErrorOr;
 
-namespace DomeGym.Domain;
+namespace DomeGym.Domain.Sessions;
 
 public class Session(
     DateOnly date,
     TimeRange time,
     int maxParticipants,
     Guid trainerId,
-    Guid? id = null) : Entity(id ?? Guid.NewGuid())
+    Guid? id = null) : AggregateRoot(id ?? Guid.NewGuid())
 {
     public DateOnly Date { get; } = date;
     public TimeRange Time { get; } = time;
@@ -49,7 +51,7 @@ public class Session(
             return SessionErrors.CannotHaveMoreReservationsThanParticipants;
         }
 
-        if(_reservations.Any(r => r.ParticipantId == participant.Id))
+        if (_reservations.Any(r => r.ParticipantId == participant.Id))
         {
             return Error.Conflict("Participant already has a reservation");
         }

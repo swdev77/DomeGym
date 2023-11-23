@@ -1,4 +1,4 @@
-using System.Data.Common;
+using DomeGym.Domain.Subscriptions;
 using DomeGym.Domain.UnitTests.TestUtils.Gym;
 using DomeGym.Domain.UnitTests.TestUtils.Subscriptions;
 using FluentAssertions;

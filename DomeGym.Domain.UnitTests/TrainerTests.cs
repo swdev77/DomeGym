@@ -1,3 +1,4 @@
+using DomeGym.Domain.Trainers;
 using DomeGym.Domain.UnitTests.TestConstants;
 using DomeGym.Domain.UnitTests.TestUtils.Sessions;
 using DomeGym.Domain.UnitTests.TestUtils.TimeRanges;

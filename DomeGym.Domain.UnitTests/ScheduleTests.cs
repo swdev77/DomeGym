@@ -1,3 +1,4 @@
+using DomeGym.Domain.Common.Entities;
 using DomeGym.Domain.UnitTests.TestConstants;
 using DomeGym.Domain.UnitTests.TestUtils.TimeRanges;
 using FluentAssertions;

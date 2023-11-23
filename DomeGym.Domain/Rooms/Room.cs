@@ -1,7 +1,9 @@
 using DomeGym.Domain.Common;
+using DomeGym.Domain.Common.Entities;
+using DomeGym.Domain.Sessions;
 using ErrorOr;
 
-namespace DomeGym.Domain;
+namespace DomeGym.Domain.Rooms;
 
 public class Room(Guid id, int maxDailySessions, Schedule? schedule = null) : Entity(id)
 {
@@ -15,8 +17,8 @@ public class Room(Guid id, int maxDailySessions, Schedule? schedule = null) : En
         {
             return Error.Conflict("This session is already exists");
         }
-        
-        if (_sessionIds.Count>=_maxDailySessions)
+
+        if (_sessionIds.Count >= _maxDailySessions)
         {
             return RoomErrors.CannotHaveMoreSessionsThanSubscriptionAllows;
         }

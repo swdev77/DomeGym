@@ -4,7 +4,7 @@ using FluentAssertions;
 
 namespace DomeGym.Domain.UnitTests;
 
-using DomeGym.Domain;
+using DomeGym.Domain.Gyms;
 
 public class GymTests
 {

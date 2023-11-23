@@ -1,7 +1,6 @@
-using System.Net.NetworkInformation;
-
 namespace DomeGym.Domain.UnitTests.TestUtils.Subscriptions;
 
+using DomeGym.Domain.Subscriptions;
 using TestConstants;
 
 public static class SubscriptionFactory

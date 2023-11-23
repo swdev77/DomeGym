@@ -1,5 +1,6 @@
 namespace DomeGym.Domain.UnitTests.TestUtils.Sessions;
 
+using DomeGym.Domain.Sessions;
 using TestConstants;
 public static class SessionFactory 
 {

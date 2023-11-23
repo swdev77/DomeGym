@@ -1,6 +1,6 @@
 namespace DomeGym.Domain.UnitTests.TestUtils.Gym;
 
-using DomeGym.Domain;
+using DomeGym.Domain.Gyms;
 
 public class GymFactory
 {

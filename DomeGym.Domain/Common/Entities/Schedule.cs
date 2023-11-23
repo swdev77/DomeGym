@@ -1,9 +1,8 @@
-
 using ErrorOr;
 
-namespace DomeGym.Domain;
+namespace DomeGym.Domain.Common.Entities;
 
-public class Schedule
+public class Schedule(Guid? id = null) : Entity(id ?? Guid.NewGuid())
 {
     private readonly Dictionary<DateOnly, List<TimeRange>> _calendar = [];
 
@@ -22,6 +21,6 @@ public class Schedule
             return Error.Conflict("Time slot is already booked");
         }
 
-        return Result.Success; 
+        return Result.Success;
     }
 }

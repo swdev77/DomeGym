@@ -13,7 +13,7 @@ public class Session(
     public DateOnly Date { get; } = date;
     public TimeRange Time { get; } = time;
     private readonly Guid _trainerId = trainerId;
-    private readonly List<Guid> _participantIds = [];
+    private readonly List<Reservation> _reservations = [];
     private readonly int _maxParticipants = maxParticipants;
 
 
@@ -24,10 +24,13 @@ public class Session(
             return SessionErrors.CanNotCancelReservationTooCloseToSession;
         }
 
-        if (!_participantIds.Remove(participant.Id))
+        var reservation = _reservations.Find(r => r.ParticipantId == participant.Id);
+        if (reservation is null)
         {
             return Error.NotFound("Participant not found");
         }
+
+        _reservations.Remove(reservation);
 
         return Result.Success;
     }
@@ -41,12 +44,17 @@ public class Session(
 
     public ErrorOr<Success> ReserveSpot(Participant participant)
     {
-        if (_participantIds.Count >= _maxParticipants)
+        if (_reservations.Count >= _maxParticipants)
         {
             return SessionErrors.CannotHaveMoreReservationsThanParticipants;
         }
 
-        _participantIds.Add(participant.Id);
+        if(_reservations.Any(r => r.ParticipantId == participant.Id))
+        {
+            return Error.Conflict("Participant already has a reservation");
+        }
+
+        _reservations.Add(new(participant.Id));
 
         return Result.Success;
     }

@@ -5,7 +5,7 @@ using ErrorOr;
 
 namespace DomeGym.Domain.Rooms;
 
-public class Room(Guid id, int maxDailySessions, Schedule? schedule = null) : Entity(id)
+public class Room(Guid id, int maxDailySessions, Schedule? schedule = null) : AggregateRoot(id)
 {
     private readonly List<Guid> _sessionIds = [];
     private readonly int _maxDailySessions = maxDailySessions;

@@ -5,7 +5,7 @@ using ErrorOr;
 namespace DomeGym.Domain.Subscriptions;
 
 public class Subscription(SubscriptionType subscriptionType, Guid? id = null)
-    : Entity(id ?? Guid.NewGuid())
+    : AggregateRoot(id ?? Guid.NewGuid())
 {
     private readonly List<Guid> gymIds = [];
 

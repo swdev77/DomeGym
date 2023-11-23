@@ -5,7 +5,7 @@ using ErrorOr;
 
 namespace DomeGym.Domain.Trainers;
 
-public class Trainer(Schedule? schedule = null, Guid? id = null) : Entity(id ?? Guid.NewGuid())
+public class Trainer(Schedule? schedule = null, Guid? id = null) : AggregateRoot(id ?? Guid.NewGuid())
 {
     private readonly Guid _id = id ?? Guid.NewGuid();
     private readonly List<Guid> _sessionIds = [];

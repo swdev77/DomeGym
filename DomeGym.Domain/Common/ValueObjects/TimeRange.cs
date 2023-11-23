@@ -1,4 +1,5 @@
 using DomeGym.Domain.Common;
+using ErrorOr;
 using Throw;
 
 namespace DomeGym.Domain;
@@ -11,6 +12,15 @@ public class TimeRange : ValueObject
     {
         Start = start.Throw().IfGreaterThanOrEqualTo(end);
         End = end;
+    }
+
+    public static ErrorOr<TimeRange> FromDateTimes(DateTime start, DateTime end)
+    {
+        if (start.Date != end.Date) return Error.Validation(description: "Start and end must be on the same date");
+        
+        if (start >= end) return Error.Validation(description: "Start must be before end");
+
+        return new TimeRange(TimeOnly.FromDateTime(start), TimeOnly.FromDateTime(end));
     }
 
     public bool OverlapsWith(TimeRange other)

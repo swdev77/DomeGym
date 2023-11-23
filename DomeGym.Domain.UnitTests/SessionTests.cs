@@ -35,8 +35,7 @@ public class SessionTests
         // Arrange
         var session = SessionFactory.CreateSession(
             date: Constants.Session.Date,
-            startTime: Constants.Session.StartTime,
-            endTime: Constants.Session.EndTime);
+            time: Constants.Session.TimeRange);
         
         var participant = ParticipantFactory.CreateParticipant();
 

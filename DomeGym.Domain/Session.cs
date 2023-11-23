@@ -4,23 +4,22 @@ namespace DomeGym.Domain;
 
 public class Session(
     DateOnly date,
-    TimeOnly startTime,
-    TimeOnly endTime,
+    TimeRange time,
     int maxParticipants,
     Guid trainerId,
     Guid? id = null)
 {
-    private readonly Guid _id = id ?? Guid.NewGuid();
+    public Guid Id { get; } = id ?? Guid.NewGuid();
+    public DateOnly Date { get; } = date;
+    public TimeRange Time { get; } = time;
     private readonly Guid _trainerId = trainerId;
     private readonly List<Guid> _participantIds = [];
-    private readonly DateOnly _date = date;
-    private readonly TimeOnly _startTime = startTime;
-    private readonly TimeOnly _endTime = endTime;
     private readonly int _maxParticipants = maxParticipants;
+
 
     public ErrorOr<Success> CancelReservation(Participant participant, IDateTimeProvider dateTimeProvider)
     {
-        if(IsTooCloseToSession(dateTimeProvider.UtcNow))
+        if (IsTooCloseToSession(dateTimeProvider.UtcNow))
         {
             return SessionErrors.CanNotCancelReservationTooCloseToSession;
         }
@@ -37,7 +36,7 @@ public class Session(
     {
         const int MinHours = 24;
 
-        return (_date.ToDateTime(_startTime) - utcNow).TotalHours < MinHours;
+        return (Date.ToDateTime(Time.Start) - utcNow).TotalHours < MinHours;
     }
 
     public ErrorOr<Success> ReserveSpot(Participant participant)

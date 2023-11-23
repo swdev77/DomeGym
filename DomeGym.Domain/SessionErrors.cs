@@ -13,4 +13,9 @@ public static class SessionErrors
         code: "CanNotCancelReservationTooCloseToSession",
         description: "Can not cancel reservation too close to session" 
     );
+
+    public readonly static Error SessionAlreadyExists = Error.Conflict(
+        code: "SessionAlreadyExists",
+        description: "Session already exists"
+    );
 }

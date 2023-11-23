@@ -2,7 +2,7 @@ using DomeGym.Domain.UnitTests.TestUtils.Gym;
 using DomeGym.Domain.UnitTests.TestUtils.Rooms;
 using FluentAssertions;
 
-namespace DomeGym.Domain.UnitTests;
+namespace DomeGym.Domain.UnitTests.Gyms;
 
 using DomeGym.Domain.Gyms;
 
@@ -11,7 +11,7 @@ public class GymTests
     [Fact]
     public void AddRoom_WhenMoreThanSubscriptionAllows_ShouldFail()
     {
-        var gym = GymFactory.CreateGym(maxRooms: 1); 
+        var gym = GymFactory.CreateGym(maxRooms: 1);
         var room1 = RoomFactory.CreateRoom(id: Guid.NewGuid());
         var room2 = RoomFactory.CreateRoom(id: Guid.NewGuid());
 

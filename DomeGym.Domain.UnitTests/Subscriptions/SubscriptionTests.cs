@@ -3,16 +3,16 @@ using DomeGym.Domain.UnitTests.TestUtils.Gym;
 using DomeGym.Domain.UnitTests.TestUtils.Subscriptions;
 using FluentAssertions;
 
-namespace DomeGym.Domain.UnitTests;
+namespace DomeGym.Domain.UnitTests.Subscriptions;
 
-public class SubscriptionTests 
+public class SubscriptionTests
 {
     [Fact]
     public void AddGym_WhenMoreThanSubscriptionAllows_ShouldFail()
     {
         var subscription = SubscriptionFactory.CreateSubscription();
 
-        var gyms = Enumerable.Range(0, subscription.GetMaxGyms()+1)
+        var gyms = Enumerable.Range(0, subscription.GetMaxGyms() + 1)
             .Select(_ => GymFactory.CreateGym(id: Guid.NewGuid()))
             .ToList();
 

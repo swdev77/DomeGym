@@ -5,9 +5,9 @@ using DomeGym.Domain.UnitTests.TestUtils.Services;
 using DomeGym.Domain.UnitTests.TestUtils.Sessions;
 using FluentAssertions;
 
-namespace DomeGym.Domain.UnitTests;
+namespace DomeGym.Domain.UnitTests.Sessions;
 
-public class SessionTests 
+public class SessionTests
 {
     [Fact]
     public void ReserveSpot_WhenNoMoreRoom_ShouldFailReservation()
@@ -37,7 +37,7 @@ public class SessionTests
         var session = SessionFactory.CreateSession(
             date: Constants.Session.Date,
             time: Constants.Session.TimeRange);
-        
+
         var participant = ParticipantFactory.CreateParticipant();
 
         var cancellationDateTime = Constants.Session.Date.ToDateTime(TimeOnly.MinValue);
